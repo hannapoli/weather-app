@@ -7,15 +7,19 @@ function displayTemperature(response) {
     let cityElement = document.querySelector("#current-city");
     cityElement.innerHTML = response.data.city;
 
+    let currentDateElement = document.querySelector("#current-date");
+    let date = new Date(response.data.time * 1000);
+    currentDateElement.innerHTML = formatDate(date);
+
     let descriptionElement = document.querySelector("#weather-description");
     descriptionElement.innerHTML = response.data.condition.description;
 
     let humidityElement = document.querySelector("#humidity");
     humidityElement.innerHTML = `${response.data.temperature.humidity}%`;
-
+    
     let windElement = document.querySelector("#wind");
     windElement.innerHTML = `${Number(response.data.wind.speed.toFixed(1))} km/h`;
-
+    
     console.log(response.data);
   }
   
@@ -39,16 +43,7 @@ function displayTemperature(response) {
   function formatDate(date) {
     let minutes = date.getMinutes();
     let hours = date.getHours();
-    let day = date.getDay();
-  
-    if (minutes < 10) {
-      minutes = `0${minutes}`;
-    }
-  
-    if (hours < 10) {
-      hours = `0${hours}`;
-    }
-  
+    
     let days = [
       "Sunday",
       "Monday",
@@ -58,13 +53,20 @@ function displayTemperature(response) {
       "Friday",
       "Saturday",
     ];
+    
+    let day = days[date.getDay()];
+    
+    if (minutes < 10) {
+      minutes = `0${minutes}`;
+    }
   
-    let formattedDay = days[day];
-    return `${formattedDay} ${hours}:${minutes}`;
+    if (hours < 10) {
+      hours = `0${hours}`;
+    }
+  
+    return `${day} ${hours}:${minutes}`;
   }
   
-  let currentDateELement = document.querySelector("#current-date");
-  let currentDate = new Date();
   
-  currentDateELement.innerHTML = formatDate(currentDate);
+  
   
