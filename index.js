@@ -20,7 +20,8 @@ function displayTemperature(response) {
     let windElement = document.querySelector("#wind");
     windElement.innerHTML = `${Number(response.data.wind.speed.toFixed(1))} km/h`;
     
-    console.log(response.data);
+    let iconElement = document.querySelector("#icon");
+    iconElement.innerHTML = `<img src="${response.data.condition.icon_url}" />`;
   }
   
   function searchCity(city) {
