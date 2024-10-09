@@ -22,8 +22,11 @@ function displayTemperature(response) {
     
     let iconElement = document.querySelector("#icon");
     iconElement.innerHTML = `<img src="${response.data.condition.icon_url}" />`;
+    
+    getForecast(response.data.city); 
   }
   
+
   function searchCity(city) {
     let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=4a87c08b5fa402fe2b9tdfe493b56ao7&units=metric`;
     axios.get(apiUrl).then(displayTemperature);
@@ -38,7 +41,7 @@ function displayTemperature(response) {
 
   let searchForm = document.querySelector("#search-form");
   searchForm.addEventListener("submit", search);
-
+  
   searchCity("Kyiv");
   
   function formatDate(date) {
@@ -68,7 +71,14 @@ function displayTemperature(response) {
     return `${day} ${hours}:${minutes}`;
   }
 
-  function displayForecast() {
+  function getForecast(city) {
+    let apiUrl = 'https://api.shecodes.io/weather/v1/forecast?query=${city}&key=4a87c08b5fa402fe2b9tdfe493b56ao7&units=metric';
+    axios.get(apiUrl).then(displayForecast);
+  }
+
+  function displayForecast(response) {
+    console.log(response.data);
+
     let days = ["Tue", "Wed", "Thu", "Fri", "Sat"];
     let forecastHtml = "";
 
@@ -88,7 +98,9 @@ function displayTemperature(response) {
     forecastElement.innerHTML = forecastHtml;
   }
 
-  displayForecast();
+  
+
+
   
   
   
