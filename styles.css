@@ -111,8 +111,10 @@ main {
 }
 
 .weather-forecast-icon {
-  text-align:center;
-  font-size: 38px;
+  display: block;
+  margin: 0 auto;
+  width: 85px;
+  height: 85px;
 }
 
 .weather-forecast-temperatures {

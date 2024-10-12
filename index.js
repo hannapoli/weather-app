@@ -68,7 +68,7 @@ function displayTemperature(response) {
       hours = `0${hours}`;
     }
   
-    return `${day} ${hours}:${minutes}`;
+    return `${day}, ${hours}:${minutes}`;
   }
 
   function getForecast(city) {
@@ -77,21 +77,21 @@ function displayTemperature(response) {
   }
 
   function displayForecast(response) {
-    console.log(response.data);
-
-    let days = ["Tue", "Wed", "Thu", "Fri", "Sat"];
+   // console.log(response.data);
     let forecastHtml = "";
 
-    days.forEach(function(day) {
-      forecastHtml = forecastHtml + `
-      <div class="weather-forecast-day">
-        <div class="weather-forecast-date">${day}</div>
-        <div class="weather-forecast-icon">☀️</div>
-        <div class="weather-forecast-temperatures">
-          <div class="weather-forecast-t"><strong>8º</strong></div>
-          <div class="weather-forecast-t">10º</div>
-        </div>
-      </div>`;
+    response.data.daily.forEach(function(day, index) {
+      if(index<5) {
+        forecastHtml = forecastHtml + `
+        <div class="weather-forecast-day">
+          <div class="weather-forecast-date">Sat</div>
+          <img src="${day.condition.icon_url}" class="weather-forecast-icon" />
+          <div class="weather-forecast-temperatures">
+            <div class="weather-forecast-t"><strong>${Math.round(day.temperature.maximum)}º</strong></div>
+            <div class="weather-forecast-t">${Math.round(day.temperature.minimum)}º</div>
+          </div>
+        </div>`;
+      }
     });
 
     let forecastElement = document.querySelector("#weather-forecast");
