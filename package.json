@@ -1,0 +1,23 @@
+{
+  "name": "w-app",
+  "version": "1.0.0",
+  "description": "Shows the current date and time, the current and the predicted weather of a chosen city based on data that I get from the weather server via API.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hannapoli/weather-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hannapoli/weather-app/issues"
+  },
+  "homepage": "https://github.com/hannapoli/weather-app#readme",
+  "dependencies": {
+    "node-fetch": "^3.3.2"
+  }
+}

@@ -27,8 +27,14 @@ const displayTemperature = (response) => {
 };
 
 const searchCity = (city) => {
-  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=4a87c08b5fa402fe2b9tdfe493b56ao7&units=metric`;
-  axios.get(apiUrl).then(displayTemperature);
+  let apiUrl = `/.netlify/functions/get-weather?city=${city}&type=current`;
+
+  axios
+    .get(apiUrl)
+    .then(displayTemperature)
+    .catch((error) => {
+      console.error("Error loading weather data:", error);
+    });
 };
 
 const search = (event) => {
@@ -75,8 +81,13 @@ const formatDay = (timestamp) => {
 };
 
 const getForecast = (city) => {
-  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=4a87c08b5fa402fe2b9tdfe493b56ao7&units=metric`;
-  axios.get(apiUrl).then(displayForecast);
+  let apiUrl = `/.netlify/functions/get-weather?city=${city}&type=forecast`;
+  axios
+    .get(apiUrl)
+    .then(displayForecast)
+    .catch((error) => {
+      console.error("Error loading forecast:", error);
+    });
 };
 
 const displayForecast = (response) => {
